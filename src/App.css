@@ -5,6 +5,7 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+  margin: 0 auto 0 15%;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -13,12 +14,26 @@
   }
 }
 
+.input1{
+  width: 30%;
+  margin: 0 auto 0 5%;
+}
+
+.input2{
+  display: flex;
+  justify-content: space-between;
+}
+@media screen and (max-width: 768px) {
+  .input2{
+     display: block;
+  }
+}
 .App-header {
-  background-color: #282c34;
+  background-color: rgb(140, 176, 177);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
@@ -26,6 +41,12 @@
 
 .App-link {
   color: #61dafb;
+}
+.App button {
+  margin: 0 auto 0 15%;
+}
+.App p {
+  margin-left: 5%;
 }
 
 @keyframes App-logo-spin {
@@ -35,4 +56,21 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.flex{
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+}
+.pad-50{
+  padding-bottom: 50px;
+}
+
+.App button { 
+  margin: 50px auto 0 15%;
+  height: 80px;
+  width: 120px;
+  border-radius: 250px;
 }
