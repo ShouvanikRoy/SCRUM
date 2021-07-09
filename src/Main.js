@@ -64,10 +64,10 @@ const Main = (props) => {
 
   }
 
-  const onUpload = () => {
+  const onUpload = (rows) => {
   console.log(state,"state")
 
-    axios.post('http://localhost:3001/api/scrumdemo/postzpprjscrum', state)
+    axios.post('http://localhost:3001/api/scrumdemo/postzpprjscrum', rows)
       .then(json => { setData(json); console.log(json.data) })
       .catch(e => console.log(e));
   }
@@ -81,8 +81,9 @@ const Main = (props) => {
     obj.EMAIL = EMAIL;
     obj.MOBILE_NUMBER = MOBILE_NUMBER;
     axios.post('http://localhost:3001/api/scrumdemo/postzpprjscrum', obj)
-      .then(json => { setData(json); console.log(json.data) })
+      .then(json => { setData(json); console.log(json.data); alert("Data Added Successfully") })
       .catch(e => console.log(e));
+    }
 
 
     // fetch('http://localhost:3001/api/scrumdemo/postzpprjscrum', {requestOptions})
@@ -90,7 +91,6 @@ const Main = (props) => {
     //     .then(json => {setData(json)})
     //     .catch (e=> console.log(e));
 
-  }
   const convertToJson = (csv) => {
     const lines = csv.split('\n');
     const result = [];
@@ -138,7 +138,12 @@ const Main = (props) => {
   });
 
   const onDisplay = () => {
-    props.history.push('/display/'+search);
+    props.history.push('/display/'+EMP_CODE+'/'+PLANT);
+  }
+  const onChange = () => {
+    // props.match.push({Onchagne: true })
+    console.log(props.history.location.search,"ll");
+    props.history.push('/display/'+EMP_CODE+'/'+PLANT+'?source=change');
   }
   return (
 
@@ -146,10 +151,12 @@ const Main = (props) => {
       <h1> Table ZPPRJ_SCRUM </h1>
       <header className="App-header">
         <div className="flex pad-50">
+          <div className="Bhaskar"> 
           <label>
             <input name="radio" type="radio" value={radio} onChange={() => setRadio(!radio)} checked={radio} />
             Single Entry
-          </label>
+            </label>
+          </div>
           <label>
             <input name="radio1" type="radio" value={!radio} onChange={() => setRadio(!radio)} checked={!radio} />
             Multiple Entries
@@ -203,19 +210,19 @@ const Main = (props) => {
                   value={MOBILE_NUMBER}
                   onChange={(e) => setMOBILE_NUMBER(e.currentTarget.value)}
                 /></div>
-                <div className="input2">MOBILE_NUMBER1 :
+                {/* <div className="input2">MOBILE_NUMBER1 :
                 {'  '}
                 <input
                   type="text"
                   value={MOBILE_NUMBER}
                   onChange={(e) => setSearch(e.currentTarget.value)}
-                /></div>
+                /></div> */}
             </div>
 
 
             <div className="flex">
               <button className="button" type="button" onClick={onSubmit}>Add</button>
-              <button className="button" type="button" onClick={onDisplay}>Change</button>
+              <button className="button" type="button" onClick={onChange}>Change</button>
               <button className="button" type="button" onClick={onDisplay}>Display</button>
 
             </div>
